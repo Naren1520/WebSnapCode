@@ -9,7 +9,7 @@ function run() {
     localStorage.setItem('css_code', css_code.value);
     localStorage.setItem('js_code', js_code.value);
 
-    // Executing HTML, CSS $ JS code
+    // Executing HTML, CSS and JS code
     result.contentDocument.body.innerHTML = `<style>${localStorage.css_code}</style>` + localStorage.html_code;
     result.contentWindow.eval(localStorage.js_code);
 }
@@ -95,6 +95,23 @@ function readFile(file, textareaSelector) {
     };
     reader.readAsText(file);
 }
+
+document.getElementById('clearBtn').addEventListener('click', function() {
+    if (confirm('Are you sure you want to clear all code editors?')) {
+        // Clear all textareas
+        html_code.value = '';
+        css_code.value = '';
+        js_code.value = '';
+        
+        // Clear localStorage
+        localStorage.removeItem('html_code');
+        localStorage.removeItem('css_code');
+        localStorage.removeItem('js_code');
+        
+        // Update the preview
+        run();
+    }
+});
 
 //by Naren S J
 //narensonu1520@gmail.com

@@ -130,7 +130,7 @@ letter-spacing: 1px;
     gap: 10px;
 }
 
-.editor-button {
+#openBtn {
     padding: 8px 16px;
     background-color: #29f65c;
     color: #17161d;
@@ -146,4 +146,22 @@ letter-spacing: 1px;
 
 .editor-button:hover {
     background-color: #1ed34d;
+}
+
+#clearBtn {
+    padding: 8px 16px;
+    background-color: #ff4444;
+    color: #17161d;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    box-shadow: 0 0 5px rgba(255, 68, 68, 0.7);
+}
+
+#clearBtn:hover {
+    background-color: #ff0000;
 }
