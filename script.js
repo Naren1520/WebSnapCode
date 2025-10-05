@@ -19,7 +19,7 @@ html_code.onkeyup = () => run();
 css_code.onkeyup = () => run();
 js_code.onkeyup = () => run();
 
-// Accessing data stored in Local Storage. To make it more advanced you could check if there is any data stored in Local Storage.
+// Accessing data stored in Local Storage.
 html_code.value = localStorage.html_code;
 css_code.value = localStorage.css_code;
 js_code.value = localStorage.js_code;
