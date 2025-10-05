@@ -35,6 +35,36 @@ On initial page load, the script attempts to retrieve any previously saved code 
 html_code.value = localStorage.html_code;
 // ... for css_code and js_code
 
+### Running Code
+- Simply type your HTML, CSS, and JavaScript code in their respective panels
+- Preview updates automatically in real-time
+- Code is automatically saved in local storage
+
+### Project Management
+
+#### Download Project
+1. Click the "Download" button
+2. Enter a folder name when prompted
+3. Receive a ZIP file containing:
+   - index.html (with proper links)
+   - style.css
+   - script.js
+
+#### Open Project
+1. Click the "Open Project" button
+2. Select a folder containing:
+   - index.html
+   - style.css
+   - script.js
+3. Code will automatically populate in the editors
+
+## Technical Details
+
+- Built with vanilla JavaScript
+- Uses Local Storage for data persistence
+- Implements JSZip for file downloads
+- File system API for opening projects
+
 ## Developer Contact
 - Naren S J
 - narensonu1520@gmail.com

@@ -7,10 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Frontend Code Editor</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 
 <body>
-    <h1 class="main-heading">Code Editor</h1>
+    <div class="header-bar">
+        <h1 class="main-heading">Code Editor</h1>
+        <div class="button-group">
+            <input type="file" id="folderInput" webkitdirectory directory multiple style="display: none;">
+            <button id="openBtn" class="editor-button">Open Project</button>
+            <button id="downloadBtn" class="editor-button">Download</button>
+        </div>
+    </div>
     <div class="code-editor">
         <div class="code">
             <div class="html-code">

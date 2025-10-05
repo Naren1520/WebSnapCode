@@ -1,4 +1,4 @@
- const html_code = document.querySelector('.html-code textarea');
+const html_code = document.querySelector('.html-code textarea');
 const css_code = document.querySelector('.css-code textarea');
 const js_code = document.querySelector('.js-code textarea');
 const result = document.querySelector('#result');
@@ -24,6 +24,77 @@ html_code.value = localStorage.html_code;
 css_code.value = localStorage.css_code;
 js_code.value = localStorage.js_code;
 
+document.getElementById('downloadBtn').addEventListener('click', function () {
+    const folderName = prompt('Enter folder name:');
+    if (!folderName) return;
+
+    const htmlCode = document.querySelector('.html-code textarea').value;
+    const cssCode = document.querySelector('.css-code textarea').value;
+    const jsCode = document.querySelector('.js-code textarea').value;
+
+    // Creating properly formatted HTML with linked CSS and JS
+    const formattedHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloaded Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+${htmlCode}
+<script src="script.js"></script>
+</body>
+</html>`;
+
+    const zip = new JSZip();
+    const folder = zip.folder(folderName);
+
+    folder.file('index.html', formattedHTML);
+    folder.file('style.css', cssCode);
+    folder.file('script.js', jsCode);
+
+    zip.generateAsync({ type: 'blob' }).then(function (content) {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(content);
+        a.download = folderName + '.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
+});
+
+document.getElementById('openBtn').addEventListener('click', function() {
+    document.getElementById('folderInput').click();
+});
+
+document.getElementById('folderInput').addEventListener('change', function(e) {
+    const files = Array.from(e.target.files);
+    
+    const htmlFile = files.find(file => file.name === 'index.html');
+    const cssFile = files.find(file => file.name === 'style.css');
+    const jsFile = files.find(file => file.name === 'script.js');
+    
+    if (htmlFile) {
+        readFile(htmlFile, '.html-code textarea');
+    }
+    if (cssFile) {
+        readFile(cssFile, '.css-code textarea');
+    }
+    if (jsFile) {
+        readFile(jsFile, '.js-code textarea');
+    }
+});
+
+function readFile(file, textareaSelector) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.querySelector(textareaSelector).value = e.target.result;
+        // Trigger the run function to update the preview
+        run();
+    };
+    reader.readAsText(file);
+}
 
 //by Naren S J
 //narensonu1520@gmail.com
